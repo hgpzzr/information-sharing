@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.information_sharing.dao.informationCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.example.information_sharing.entity.informationCategory" >
+    <id column="information_category_id" property="informationCategoryId" jdbcType="INTEGER" />
+    <result column="information_category_name" property="informationCategoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from information_category
+    where information_category_id = #{informationCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.information_sharing.entity.informationCategory" >
+    insert into information_category (information_category_id, information_category_name
+      )
+    values (#{informationCategoryId,jdbcType=INTEGER}, #{informationCategoryName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.information_sharing.entity.informationCategory" >
+    update information_category
+    set information_category_name = #{informationCategoryName,jdbcType=VARCHAR}
+    where information_category_id = #{informationCategoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select information_category_id, information_category_name
+    from information_category
+    where information_category_id = #{informationCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select information_category_id, information_category_name
+    from information_category
+  </select>
+</mapper>

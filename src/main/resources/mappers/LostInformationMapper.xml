@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.information_sharing.dao.LostInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.example.information_sharing.entity.LostInformation" >
+    <id column="lost_and_found_id" property="lostAndFoundId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="pickup_place" property="pickupPlace" jdbcType="VARCHAR" />
+    <result column="pickup_time" property="pickupTime" jdbcType="TIMESTAMP" />
+    <result column="contact_information" property="contactInformation" jdbcType="VARCHAR" />
+    <result column="item_status" property="itemStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lost_information
+    where lost_and_found_id = #{lostAndFoundId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.information_sharing.entity.LostInformation" >
+    insert into lost_information (lost_and_found_id, user_id, `describe`, 
+      pic_url, file_path, pickup_place, 
+      pickup_time, contact_information, item_status, 
+      create_time, category_id, flag, 
+      update_time)
+    values (#{lostAndFoundId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, 
+      #{picUrl,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{pickupPlace,jdbcType=VARCHAR}, 
+      #{pickupTime,jdbcType=TIMESTAMP}, #{contactInformation,jdbcType=VARCHAR}, #{itemStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{categoryId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.information_sharing.entity.LostInformation" >
+    update lost_information
+    set user_id = #{userId,jdbcType=INTEGER},
+      `describe` = #{describe,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      pickup_place = #{pickupPlace,jdbcType=VARCHAR},
+      pickup_time = #{pickupTime,jdbcType=TIMESTAMP},
+      contact_information = #{contactInformation,jdbcType=VARCHAR},
+      item_status = #{itemStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where lost_and_found_id = #{lostAndFoundId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select lost_and_found_id, user_id, `describe`, pic_url, file_path, pickup_place, 
+    pickup_time, contact_information, item_status, create_time, category_id, flag, update_time
+    from lost_information
+    where lost_and_found_id = #{lostAndFoundId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select lost_and_found_id, user_id, `describe`, pic_url, file_path, pickup_place, 
+    pickup_time, contact_information, item_status, create_time, category_id, flag, update_time
+    from lost_information
+  </select>
+</mapper>

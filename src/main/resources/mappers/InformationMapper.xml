@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.information_sharing.dao.InformationMapper" >
+  <resultMap id="BaseResultMap" type="com.example.information_sharing.entity.Information" >
+    <id column="information_id" property="informationId" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="contact_information" property="contactInformation" jdbcType="VARCHAR" />
+    <result column="information_status" property="informationStatus" jdbcType="INTEGER" />
+    <result column="information_category_id" property="informationCategoryId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from information
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.information_sharing.entity.Information" >
+    insert into information (information_id, `time`, contact_information, 
+      information_status, information_category_id, 
+      create_time, update_time, user_id
+      )
+    values (#{informationId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{contactInformation,jdbcType=VARCHAR}, 
+      #{informationStatus,jdbcType=INTEGER}, #{informationCategoryId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.information_sharing.entity.Information" >
+    update information
+    set `time` = #{time,jdbcType=TIMESTAMP},
+      contact_information = #{contactInformation,jdbcType=VARCHAR},
+      information_status = #{informationStatus,jdbcType=INTEGER},
+      information_category_id = #{informationCategoryId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER}
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select information_id, `time`, contact_information, information_status, information_category_id, 
+    create_time, update_time, user_id
+    from information
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select information_id, `time`, contact_information, information_status, information_category_id, 
+    create_time, update_time, user_id
+    from information
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.information_sharing.dao.LostCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.example.information_sharing.entity.LostCategory" >
+    <id column="lost_category_id" property="lostCategoryId" jdbcType="INTEGER" />
+    <result column="lost_category_name" property="lostCategoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lost_category
+    where lost_category_id = #{lostCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.information_sharing.entity.LostCategory" >
+    insert into lost_category (lost_category_id, lost_category_name)
+    values (#{lostCategoryId,jdbcType=INTEGER}, #{lostCategoryName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.information_sharing.entity.LostCategory" >
+    update lost_category
+    set lost_category_name = #{lostCategoryName,jdbcType=VARCHAR}
+    where lost_category_id = #{lostCategoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select lost_category_id, lost_category_name
+    from lost_category
+    where lost_category_id = #{lostCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select lost_category_id, lost_category_name
+    from lost_category
+  </select>
+</mapper>
