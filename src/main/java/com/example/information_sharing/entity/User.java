@@ -20,6 +20,26 @@ public class User implements Serializable {
 
     private String phone;
 
+    private String picUrl;
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    private String filePath;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUserId() {
@@ -100,6 +120,8 @@ public class User implements Serializable {
         sb.append(", nickName=").append(nickName);
         sb.append(", createTime=").append(createTime);
         sb.append(", phone=").append(phone);
+        sb.append(",picUrl").append(picUrl);
+        sb.append(",filePath").append(filePath);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
