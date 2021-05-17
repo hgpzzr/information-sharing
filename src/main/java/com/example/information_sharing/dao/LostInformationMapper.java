@@ -1,8 +1,11 @@
 package com.example.information_sharing.dao;
 
 import com.example.information_sharing.entity.LostInformation;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface LostInformationMapper {
     int deleteByPrimaryKey(Integer lostAndFoundId);
 

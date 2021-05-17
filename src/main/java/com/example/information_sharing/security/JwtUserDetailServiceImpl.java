@@ -1,7 +1,8 @@
 package com.example.information_sharing.security;
 
-import com.example.service_outsourcing.entity.User;
-import com.example.service_outsourcing.service.UserService;
+
+import com.example.information_sharing.entity.User;
+import com.example.information_sharing.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +30,7 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("用户名为 %s 的用户不存在", username));
         } else {
             Integer role = user.getRole();
-            return new JwtUser(username, user.getPasswd(), role);
+            return new JwtUser(username, user.getPassword(), role);
         }
     }
 }

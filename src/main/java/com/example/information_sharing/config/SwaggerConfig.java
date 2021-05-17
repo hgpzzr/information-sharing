@@ -50,7 +50,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
                 //选择哪些接口作为swagger的doc发布
                 .select()
                 //.apis(RequestHandlerSelectors.basePackage("com.best.user"))//将那些包作为接口文档来显示
-                .apis(RequestHandlerSelectors.basePackage("com.example.service_outsourcing.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.information_sharing.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 // 支持的通讯协议集合

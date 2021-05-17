@@ -1,6 +1,7 @@
 package com.example.information_sharing.config;
 
-import com.example.service_outsourcing.security.AuthRoleInterceptor;
+
+import com.example.information_sharing.security.AuthRoleInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

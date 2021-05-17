@@ -1,6 +1,7 @@
 package com.example.information_sharing.security;
 
-import com.example.service_outsourcing.utils.JwtTokenUtil;
+
+import com.example.information_sharing.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
