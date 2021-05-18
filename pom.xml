@@ -37,13 +37,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--validate 依赖-->
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-        <!--        <dependency>-->
-        <!--            <groupId>javax.validation</groupId>-->
-        <!--            <artifactId>validation-api</artifactId>-->
-        <!--            <version>2.0.1.Final</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -185,6 +178,20 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.15</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.5.16</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 
