@@ -16,4 +16,5 @@ public interface LostInformationMapper {
     List<LostInformation> selectAll();
 
     int updateByPrimaryKey(LostInformation record);
+
 }

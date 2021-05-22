@@ -29,4 +29,10 @@ public class LostController {
 	public ResultVO insert(LostInformationForm form, @RequestParam("file") MultipartFile file){
 		return lostService.insertLostInformation(form,file);
 	}
+
+	@DeleteMapping("/delete")
+	@ApiOperation("删除失物信息")
+	public ResultVO delete(int lostId){
+		return lostService.deleteLostInformation(lostId);
+	}
 }

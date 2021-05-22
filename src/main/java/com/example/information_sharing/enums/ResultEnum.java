@@ -15,6 +15,7 @@ public enum  ResultEnum {
     USER_NOT_EXIST_ERROR(3,"用户不存在"),
     PASSWORD_ERROR(4,"密码错误"),
     FILE_UPLOAD_ERROR(5,"文件上传失败"),
+    LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR(6,"失物招领信息不存在"),
 
 
 

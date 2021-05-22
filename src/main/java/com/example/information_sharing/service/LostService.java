@@ -13,4 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public interface LostService {
 	ResultVO insertLostInformation(LostInformationForm form, MultipartFile file);
+
+	ResultVO deleteLostInformation(int lostId);
 }

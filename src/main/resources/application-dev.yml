@@ -43,5 +43,8 @@ jwt:
 server:
   port: 8088
 img:
-  url: 127.0.0.1
-  filePath: D:\\image\\
+  url: http://127.0.0.1/image/
+  headPic:
+    filePath: D:\\image\\Head Picture\\
+  informationPic:
+    filePath: D:\\image\\Information Picture\\

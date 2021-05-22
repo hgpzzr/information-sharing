@@ -60,11 +60,27 @@ public class LostServiceImpl implements LostService {
 		Date updateTime = new Date();
 		information.setCreateTime(createTime);
 		information.setUpdateTime(updateTime);
-		//存入数据库
+		// 存入数据库
 		int insert = lostInformationMapper.insert(information);
 		if(insert != 1){
 			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
 		}
 		return ResultVOUtil.success("添加成功");
+	}
+
+	@Override
+	public ResultVO deleteLostInformation(int lostId) {
+		LostInformation lostInformation = lostInformationMapper.selectByPrimaryKey(lostId);
+		if(lostInformation == null){
+			return ResultVOUtil.error(ResultEnum.LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR);
+		}
+		// 删除图片
+		FileUtil.deleteFile(lostInformation.getFilePath());
+		// 删除数据库记录
+		int delete = lostInformationMapper.deleteByPrimaryKey(lostId);
+		if(delete != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("删除成功");
 	}
 }
