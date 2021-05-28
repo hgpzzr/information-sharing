@@ -34,7 +34,7 @@ public class LostServiceImpl implements LostService {
 
 	@Value("${img.informationPic.filePath}")
 	private String filePath;
-	@Value("${img.url}")
+	@Value("${img.informationPic.url}")
 	private String url;
 
 	@Override
