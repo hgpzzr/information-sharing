@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @author hgp
- * @version 1.0
- * @date 2021/5/18 13:44
- */
 @RestController
 @CrossOrigin
 @Slf4j
