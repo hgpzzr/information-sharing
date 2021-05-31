@@ -31,4 +31,13 @@ public class LostCategoryServiceImpl implements LostCategoryService {
 		}
 		return ResultVOUtil.success("添加成功");
 	}
+
+	@Override
+	public ResultVO deleteLostCategory(int lostCategoryId) {
+		int delete = lostCategoryMapper.deleteByPrimaryKey(lostCategoryId);
+		if(delete != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("删除成功");
+	}
 }

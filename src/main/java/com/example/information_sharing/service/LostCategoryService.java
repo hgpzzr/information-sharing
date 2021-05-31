@@ -11,4 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface LostCategoryService {
 	ResultVO insertLostCategory(String lostCategoryName);
+
+	ResultVO deleteLostCategory(int lostCategoryId);
 }
