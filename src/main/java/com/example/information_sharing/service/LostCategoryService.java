@@ -10,7 +10,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface LostCategoryService {
+	/**
+	 * 添加失物招领分类信息
+	 * @param lostCategoryName
+	 * @return
+	 */
 	ResultVO insertLostCategory(String lostCategoryName);
 
+	/**
+	 * 删除失物招领分类信息
+	 * @param lostCategoryId
+	 * @return
+	 */
 	ResultVO deleteLostCategory(int lostCategoryId);
 }

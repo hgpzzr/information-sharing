@@ -6,6 +6,7 @@ import com.example.information_sharing.entity.LostInformation;
 import com.example.information_sharing.entity.User;
 import com.example.information_sharing.enums.ResultEnum;
 import com.example.information_sharing.form.LostInformationForm;
+import com.example.information_sharing.form.UpdateLostInformationForm;
 import com.example.information_sharing.service.LostService;
 import com.example.information_sharing.service.UserService;
 import com.example.information_sharing.utils.FileUtil;
@@ -82,5 +83,19 @@ public class LostServiceImpl implements LostService {
 			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
 		}
 		return ResultVOUtil.success("删除成功");
+	}
+
+	@Override
+	public ResultVO updateLostInformation(UpdateLostInformationForm form) {
+		LostInformation lostInformation = lostInformationMapper.selectByPrimaryKey(form.getLostAndFoundId());
+		if(lostInformation == null){
+			 return ResultVOUtil.error(ResultEnum.LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR);
+		}
+		BeanUtils.copyProperties(form,lostInformation);
+		int update = lostInformationMapper.updateByPrimaryKey(lostInformation);
+		if(update != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("修改成功");
 	}
 }
