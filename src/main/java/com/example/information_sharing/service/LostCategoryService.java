@@ -1,6 +1,7 @@
 package com.example.information_sharing.service;
 
 import com.example.information_sharing.VO.ResultVO;
+import com.example.information_sharing.form.UpdateLostCategoryForm;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,4 +24,6 @@ public interface LostCategoryService {
 	 * @return
 	 */
 	ResultVO deleteLostCategory(int lostCategoryId);
+
+	ResultVO updateLostCategory(UpdateLostCategoryForm form);
 }

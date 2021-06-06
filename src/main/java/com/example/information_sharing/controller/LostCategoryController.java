@@ -1,6 +1,7 @@
 package com.example.information_sharing.controller;
 
 import com.example.information_sharing.VO.ResultVO;
+import com.example.information_sharing.form.UpdateLostCategoryForm;
 import com.example.information_sharing.service.LostCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,5 +33,11 @@ public class LostCategoryController {
 	@ApiOperation("删除失物招领分类信息")
 	public ResultVO delete(int lostCateGoryId){
 		return lostCategoryService.deleteLostCategory(lostCateGoryId);
+	}
+
+	@PutMapping("/update")
+	@ApiOperation("修改失物招领分类信息")
+	public ResultVO update(UpdateLostCategoryForm form){
+		return lostCategoryService.updateLostCategory(form);
 	}
 }

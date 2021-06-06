@@ -4,9 +4,11 @@ import com.example.information_sharing.VO.ResultVO;
 import com.example.information_sharing.dao.LostCategoryMapper;
 import com.example.information_sharing.entity.LostCategory;
 import com.example.information_sharing.enums.ResultEnum;
+import com.example.information_sharing.form.UpdateLostCategoryForm;
 import com.example.information_sharing.service.LostCategoryService;
 import com.example.information_sharing.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,16 @@ public class LostCategoryServiceImpl implements LostCategoryService {
 			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
 		}
 		return ResultVOUtil.success("删除成功");
+	}
+
+	@Override
+	public ResultVO updateLostCategory(UpdateLostCategoryForm form) {
+		LostCategory lostCategory = lostCategoryMapper.selectByPrimaryKey(form.getLostCategoryId());
+		BeanUtils.copyProperties(form,lostCategory);
+		int update = lostCategoryMapper.updateByPrimaryKey(lostCategory);
+		if(update != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("修改成功");
 	}
 }
