@@ -40,4 +40,10 @@ public class LostCategoryController {
 	public ResultVO update(UpdateLostCategoryForm form){
 		return lostCategoryService.updateLostCategory(form);
 	}
+
+	@GetMapping("/selectAll")
+	@ApiOperation("查询所有分类")
+	public ResultVO selectAll(){
+		return lostCategoryService.selectAll();
+	}
 }

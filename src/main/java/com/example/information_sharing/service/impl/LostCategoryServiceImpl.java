@@ -12,6 +12,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author hgp
  * @version 1.0
@@ -52,5 +54,11 @@ public class LostCategoryServiceImpl implements LostCategoryService {
 			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
 		}
 		return ResultVOUtil.success("修改成功");
+	}
+
+	@Override
+	public ResultVO selectAll() {
+		List<LostCategory> lostCategories = lostCategoryMapper.selectAll();
+		return ResultVOUtil.success(lostCategories);
 	}
 }

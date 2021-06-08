@@ -28,5 +28,23 @@ public interface LostService {
 	 */
 	ResultVO deleteLostInformation(int lostId);
 
+	/**
+	 * 修改失物招领信息
+	 * @param form
+	 * @return
+	 */
 	ResultVO updateLostInformation(UpdateLostInformationForm form);
+
+	/**
+	 * 查询所有未找回的失物招领信息
+	 * @return
+	 */
+	ResultVO selectAllLostInformation();
+
+	/**
+	 * 根据分类查找未找回的失物招领信息
+	 * @param categoryId
+	 * @return
+	 */
+	ResultVO selectByCategoryId(int categoryId);
 }

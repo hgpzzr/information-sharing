@@ -42,4 +42,16 @@ public class LostController {
 	public ResultVO update(UpdateLostInformationForm form){
 		return lostService.updateLostInformation(form);
 	}
+
+	@GetMapping("selectAll")
+	@ApiOperation("查找所有未找回失物招领信息")
+	public ResultVO selectAll(){
+		return lostService.selectAllLostInformation();
+	}
+
+	@GetMapping("selectByCategoryId")
+	@ApiOperation("根据分类查找所有未找回失物招领信息")
+	public ResultVO selectByCategoryId(int categoryId){
+		return lostService.selectByCategoryId(categoryId);
+	}
 }

@@ -25,5 +25,12 @@ public interface LostCategoryService {
 	 */
 	ResultVO deleteLostCategory(int lostCategoryId);
 
+	/**
+	 * 修改分类信息
+	 * @param form
+	 * @return
+	 */
 	ResultVO updateLostCategory(UpdateLostCategoryForm form);
+
+	ResultVO selectAll();
 }

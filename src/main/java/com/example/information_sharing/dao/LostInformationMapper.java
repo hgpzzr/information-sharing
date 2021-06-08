@@ -15,6 +15,10 @@ public interface LostInformationMapper {
 
     List<LostInformation> selectAll();
 
+    List<LostInformation> selectByItemStatus(int itemStatus);
+
+    List<LostInformation> selectByCategoryId(int categoryId);
+
     int updateByPrimaryKey(LostInformation record);
 
 }
