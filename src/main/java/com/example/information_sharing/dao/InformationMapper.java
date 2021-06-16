@@ -15,5 +15,9 @@ public interface InformationMapper {
 
     List<Information> selectAll();
 
+    List<Information> selectByStatus(Integer informationStatus);
+
+    List<Information> selectByCategoryId(Integer informationCategoryId);
+
     int updateByPrimaryKey(Information record);
 }

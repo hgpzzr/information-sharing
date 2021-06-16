@@ -2,7 +2,7 @@ package com.example.information_sharing.entity;
 
 import java.io.Serializable;
 
-public class informationCategory implements Serializable {
+public class InformationCategory implements Serializable {
     private Integer informationCategoryId;
 
     private String informationCategoryName;

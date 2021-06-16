@@ -6,6 +6,8 @@ import java.util.Date;
 public class Information implements Serializable {
     private Integer informationId;
 
+    private String describe;
+
     private Date time;
 
     private String contactInformation;
@@ -28,6 +30,14 @@ public class Information implements Serializable {
 
     public void setInformationId(Integer informationId) {
         this.informationId = informationId;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Date getTime() {
@@ -88,20 +98,16 @@ public class Information implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", informationId=").append(informationId);
-        sb.append(", time=").append(time);
-        sb.append(", contactInformation=").append(contactInformation);
-        sb.append(", informationStatus=").append(informationStatus);
-        sb.append(", informationCategoryId=").append(informationCategoryId);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", userId=").append(userId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Information{" +
+                "informationId=" + informationId +
+                ", describe='" + describe + '\'' +
+                ", time=" + time +
+                ", contactInformation='" + contactInformation + '\'' +
+                ", informationStatus=" + informationStatus +
+                ", informationCategoryId=" + informationCategoryId +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userId=" + userId +
+                '}';
     }
 }

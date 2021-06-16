@@ -3,6 +3,7 @@
 <mapper namespace="com.example.information_sharing.dao.InformationMapper" >
   <resultMap id="BaseResultMap" type="com.example.information_sharing.entity.Information" >
     <id column="information_id" property="informationId" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="contact_information" property="contactInformation" jdbcType="VARCHAR" />
     <result column="information_status" property="informationStatus" jdbcType="INTEGER" />
@@ -11,23 +12,27 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List">
+    information_id, `describe`, `time`, contact_information, information_status, information_category_id, create_time, update_time, user_id
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from information
     where information_id = #{informationId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.information_sharing.entity.Information" >
-    insert into information (information_id, `time`, contact_information, 
+    insert into information (information_id, `describe`, `time`, contact_information,
       information_status, information_category_id, 
       create_time, update_time, user_id
       )
-    values (#{informationId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{contactInformation,jdbcType=VARCHAR}, 
+    values (#{informationId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{contactInformation,jdbcType=VARCHAR},
       #{informationStatus,jdbcType=INTEGER}, #{informationCategoryId,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.information_sharing.entity.Information" >
     update information
-    set `time` = #{time,jdbcType=TIMESTAMP},
+    set `describe` = #{describe,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=TIMESTAMP},
       contact_information = #{contactInformation,jdbcType=VARCHAR},
       information_status = #{informationStatus,jdbcType=INTEGER},
       information_category_id = #{informationCategoryId,jdbcType=INTEGER},
@@ -37,14 +42,28 @@
     where information_id = #{informationId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select information_id, `time`, contact_information, information_status, information_category_id, 
+    select information_id, `describe`, `time`, contact_information, information_status, information_category_id,
     create_time, update_time, user_id
     from information
     where information_id = #{informationId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select information_id, `time`, contact_information, information_status, information_category_id, 
+    select information_id, `describe`, `time`, contact_information, information_status, information_category_id,
     create_time, update_time, user_id
     from information
+  </select>
+  <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from inforamtion
+    where information_status = #{informationStatus,jdbcType=INTEGER}
+    order by update_time desc
+  </select>
+  <select id="selectByCategoryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from inforamtion
+    where information_category_id = #{informationCategoryId,jdbcType=INTEGER} and information_status=0
+    order by update_time desc
   </select>
 </mapper>
