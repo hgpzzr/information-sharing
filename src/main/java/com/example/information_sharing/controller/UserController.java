@@ -1,6 +1,7 @@
 package com.example.information_sharing.controller;
 
 import com.example.information_sharing.VO.ResultVO;
+import com.example.information_sharing.form.ChangePasswordForm;
 import com.example.information_sharing.form.LoginForm;
 import com.example.information_sharing.form.RegisterForm;
 import com.example.information_sharing.service.UserService;
@@ -8,10 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,5 +33,17 @@ public class UserController {
 	@ApiOperation("注册")
 	public ResultVO register(RegisterForm form) {
 		return userService.register(form);
+	}
+
+	@PostMapping("/uploadPic")
+	@ApiOperation("上传头像")
+	public ResultVO uploadPic(@RequestParam("file") MultipartFile file, int userId) {
+		return userService.uploadPic(file,userId);
+	}
+
+	@PostMapping("/changePassword")
+	@ApiOperation("修改密码")
+	public ResultVO changePassword(ChangePasswordForm form) {
+		return userService.changePassword(form);
 	}
 }

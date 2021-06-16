@@ -4,11 +4,13 @@ import com.example.information_sharing.VO.ResultVO;
 import com.example.information_sharing.dao.UserMapper;
 import com.example.information_sharing.entity.User;
 import com.example.information_sharing.enums.ResultEnum;
+import com.example.information_sharing.form.ChangePasswordForm;
 import com.example.information_sharing.form.LoginForm;
 import com.example.information_sharing.form.RegisterForm;
 import com.example.information_sharing.security.JwtProperties;
 import com.example.information_sharing.security.JwtUserDetailServiceImpl;
 import com.example.information_sharing.service.UserService;
+import com.example.information_sharing.utils.FileUtil;
 import com.example.information_sharing.utils.JwtTokenUtil;
 import com.example.information_sharing.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
@@ -128,5 +131,40 @@ public class UserServiceImpl implements UserService {
 			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
 		}
 		return ResultVOUtil.success("注册成功");
+	}
+
+	@Override
+	public ResultVO uploadPic(MultipartFile file, int userId) {
+		User user = userMapper.selectByPrimaryKey(userId);
+		if(user == null){
+			return ResultVOUtil.error(ResultEnum.USER_NOT_EXIST_ERROR);
+		}
+		String fileName = FileUtil.generateFileName(file);
+		FileUtil.upload(file,filePath,fileName);
+		user.setFilePath(filePath+fileName);
+		user.setPicUrl(url+fileName);
+		int update = userMapper.updateByPrimaryKey(user);
+		if(update != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("上传成功");
+	}
+
+	@Override
+	public ResultVO changePassword(ChangePasswordForm form) {
+		User user = userMapper.selectByPrimaryKey(form.getUserId());
+		if(user == null){
+			return ResultVOUtil.error(ResultEnum.USER_NOT_EXIST_ERROR);
+		}
+		UserDetails userDetails = jwtUserDetailService.loadUserByUsername(form.getUserName());
+		if (!new BCryptPasswordEncoder().matches(form.getOldPassword(), userDetails.getPassword())) {
+			return ResultVOUtil.error(ResultEnum.PASSWORD_ERROR);
+		}
+		user.setPassword(passwordEncoder.encode(form.getNewPassword()));
+		int update = userMapper.updateByPrimaryKey(user);
+		if(update != 1){
+			return ResultVOUtil.error(ResultEnum.DATABASE_OPTION_ERROR);
+		}
+		return ResultVOUtil.success("修改成功");
 	}
 }
