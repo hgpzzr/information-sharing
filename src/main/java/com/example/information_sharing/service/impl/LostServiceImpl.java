@@ -4,6 +4,7 @@ import com.example.information_sharing.VO.LostInformationVO;
 import com.example.information_sharing.VO.ResultVO;
 import com.example.information_sharing.dao.LostCategoryMapper;
 import com.example.information_sharing.dao.LostInformationMapper;
+import com.example.information_sharing.dao.UserMapper;
 import com.example.information_sharing.entity.LostCategory;
 import com.example.information_sharing.entity.LostInformation;
 import com.example.information_sharing.entity.User;
@@ -39,6 +40,8 @@ public class LostServiceImpl implements LostService {
 	private LostInformationMapper lostInformationMapper;
 	@Autowired
 	private LostCategoryMapper lostCategoryMapper;
+	@Autowired
+	private UserMapper userMapper;
 
 	@Value("${img.informationPic.filePath}")
 	private String filePath;
@@ -81,6 +84,11 @@ public class LostServiceImpl implements LostService {
 		LostInformation lostInformation = lostInformationMapper.selectByPrimaryKey(lostId);
 		if (lostInformation == null) {
 			return ResultVOUtil.error(ResultEnum.LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR);
+		}
+		// 判断是否是本人或者是管理员
+		User user = userMapper.selectByPrimaryKey(lostInformation.getUserId());
+		if(user.getRole() == 1 && !userService.getCurrentUser().equals(user.getUserName())){
+			return ResultVOUtil.error(ResultEnum.NOT_SELF_OPTION);
 		}
 		// 删除图片
 		FileUtil.deleteFile(lostInformation.getFilePath());
