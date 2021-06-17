@@ -87,7 +87,7 @@ public class LostServiceImpl implements LostService {
 		}
 		// 判断是否是本人或者是管理员
 		User user = userMapper.selectByPrimaryKey(lostInformation.getUserId());
-		if(user.getRole() == 1 && !userService.getCurrentUser().equals(user.getUserName())){
+		if(user.getRole() == 1 && !userService.getCurrentUser().getUserName().equals(user.getUserName())){
 			return ResultVOUtil.error(ResultEnum.NOT_SELF_OPTION);
 		}
 		// 删除图片
@@ -140,5 +140,16 @@ public class LostServiceImpl implements LostService {
 			lostInformationVOList.add(lostInformationVO);
 		}
 		return ResultVOUtil.success(lostInformationVOList);
+	}
+
+	@Override
+	public ResultVO changeItemStatus(int lostId) {
+		LostInformation lostInformation = lostInformationMapper.selectByPrimaryKey(lostId);
+		if(lostInformation == null){
+			return ResultVOUtil.error(ResultEnum.LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR);
+		}
+		lostInformation.setItemStatus(1);
+		lostInformationMapper.updateByPrimaryKey(lostInformation);
+		return ResultVOUtil.success("修改成功");
 	}
 }

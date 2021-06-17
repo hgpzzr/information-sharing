@@ -54,4 +54,10 @@ public class LostController {
 	public ResultVO selectByCategoryId(int categoryId){
 		return lostService.selectByCategoryId(categoryId);
 	}
+
+	@PostMapping("changeItemStatus")
+	@ApiOperation("将状态改为已找回")
+	public ResultVO changeItemStatus(int lostId){
+		return lostService.changeItemStatus(lostId);
+	}
 }

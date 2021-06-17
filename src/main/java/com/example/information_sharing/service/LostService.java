@@ -47,4 +47,6 @@ public interface LostService {
 	 * @return
 	 */
 	ResultVO selectByCategoryId(int categoryId);
+
+	ResultVO changeItemStatus(int lostId);
 }
