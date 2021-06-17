@@ -19,11 +19,11 @@ public class LostInformationForm {
 	private String describe;
 
 	@NotBlank(message = "拾到地点不能为空")
-	@ApiModelProperty("拾到地点")
+	@ApiModelProperty("拾到地点（或丢失地点）")
 	private String pickupPlace;
 
 	@NotBlank(message = "拾到时间不能为空")
-	@ApiModelProperty("拾到时间")
+	@ApiModelProperty("拾到时间（或丢失时间）")
 //	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date pickupTime;
@@ -37,6 +37,6 @@ public class LostInformationForm {
 	private int categoryId;
 
 	@NotBlank(message = "启事类型不能为空")
-	@ApiModelProperty("启事类型")
+	@ApiModelProperty("启事类型(0为失物启事，1为拾物启事)")
 	private int flag;
 }

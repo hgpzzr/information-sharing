@@ -49,4 +49,6 @@ public interface LostService {
 	ResultVO selectByCategoryId(int categoryId);
 
 	ResultVO changeItemStatus(int lostId);
+
+	ResultVO fuzzyQuery(Integer categoryId,String key);
 }

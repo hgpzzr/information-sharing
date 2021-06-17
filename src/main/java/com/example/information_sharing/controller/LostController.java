@@ -60,4 +60,10 @@ public class LostController {
 	public ResultVO changeItemStatus(int lostId){
 		return lostService.changeItemStatus(lostId);
 	}
+
+	@GetMapping("/fuzzyQuery")
+	@ApiOperation("根据分类进行模糊查询")
+	public ResultVO fuzzyQuery(Integer categoryId,String key){
+		return lostService.fuzzyQuery(categoryId,key);
+	}
 }

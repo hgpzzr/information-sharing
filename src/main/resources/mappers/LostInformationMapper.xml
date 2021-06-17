@@ -74,4 +74,16 @@
     where category_id = #{categoryId,jdbcType=INTEGER} and item_status = 0
     order by create_time desc
   </select>
+  <select id="fuzzyQuery" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select lost_and_found_id, user_id, `describe`, pic_url, file_path, pickup_place,
+    pickup_time, contact_information, item_status, create_time, category_id, flag, update_time
+    from lost_information
+    <where>
+        item_status = 0
+        <if test="categoryId != null"> and category_id = #{categoryId,jdbcType=INTEGER}</if>
+        <if test="key != null"> and `describe` like ('%' #{key,jdbcType=VARCHAR} '%')</if>
+    </where>
+
+    order by create_time desc
+  </select>
 </mapper>

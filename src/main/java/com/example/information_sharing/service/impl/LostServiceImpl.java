@@ -152,4 +152,16 @@ public class LostServiceImpl implements LostService {
 		lostInformationMapper.updateByPrimaryKey(lostInformation);
 		return ResultVOUtil.success("修改成功");
 	}
+
+	@Override
+	public ResultVO fuzzyQuery(Integer categoryId, String key) {
+		List<LostInformation> lostInformationList = lostInformationMapper.fuzzyQuery(categoryId, key);
+		List<LostInformationVO> lostInformationVOList = new ArrayList<>();
+		for (LostInformation lostInformation: lostInformationList){
+			LostInformationVO lostInformationVO = new LostInformationVO();
+			BeanUtils.copyProperties(lostInformation,lostInformationVO);
+			lostInformationVOList.add(lostInformationVO);
+		}
+		return ResultVOUtil.success(lostInformationVOList);
+	}
 }

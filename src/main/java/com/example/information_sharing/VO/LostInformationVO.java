@@ -30,4 +30,6 @@ public class LostInformationVO {
 	private String categoryName;
 
 	private Integer flag;
+
+	private Date createTime;
 }
