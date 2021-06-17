@@ -19,6 +19,7 @@ public enum  ResultEnum {
     USER_NAME_FORMAT_ERROR(7,"学号格式错误"),
     PASSWORD_LENGTH_ERROR(8,"密码长度错误"),
     CATEGORY_NOT_EXIST_ERROR(9,"分类不存在"),
+    NOT_SELF_OPTION(10,"非本人操作"),
 
 
 
