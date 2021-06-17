@@ -50,5 +50,5 @@ public interface LostService {
 
 	ResultVO changeItemStatus(int lostId);
 
-	ResultVO fuzzyQuery(Integer categoryId,String key);
+	ResultVO fuzzyQuery(Integer categoryId,String key,Integer flag);
 }

@@ -89,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//配置允许匿名访问的路径
 				.antMatchers("/user/register/**").permitAll()
 				.antMatchers("/user/login/**").permitAll()
-				.antMatchers("/**/**").permitAll()
+//				.antMatchers("/**/**").permitAll()
 				.antMatchers("/applicant/*").permitAll()
 
 				.anyRequest().authenticated();

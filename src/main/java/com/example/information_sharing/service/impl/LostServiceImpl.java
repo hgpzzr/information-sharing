@@ -106,6 +106,11 @@ public class LostServiceImpl implements LostService {
 		if (lostInformation == null) {
 			return ResultVOUtil.error(ResultEnum.LOST_AND_FOUND_INFORMATION_NOT_EXIST_ERROR);
 		}
+		// 判断是否是本人
+		User user = userMapper.selectByPrimaryKey(lostInformation.getUserId());
+		if(!userService.getCurrentUser().getUserName().equals(user.getUserName())){
+			return ResultVOUtil.error(ResultEnum.NOT_SELF_OPTION);
+		}
 		BeanUtils.copyProperties(form, lostInformation);
 		int update = lostInformationMapper.updateByPrimaryKey(lostInformation);
 		if (update != 1) {
@@ -154,8 +159,8 @@ public class LostServiceImpl implements LostService {
 	}
 
 	@Override
-	public ResultVO fuzzyQuery(Integer categoryId, String key) {
-		List<LostInformation> lostInformationList = lostInformationMapper.fuzzyQuery(categoryId, key);
+	public ResultVO fuzzyQuery(Integer categoryId, String key,Integer flag) {
+		List<LostInformation> lostInformationList = lostInformationMapper.fuzzyQuery(categoryId, key,flag);
 		List<LostInformationVO> lostInformationVOList = new ArrayList<>();
 		for (LostInformation lostInformation: lostInformationList){
 			LostInformationVO lostInformationVO = new LostInformationVO();

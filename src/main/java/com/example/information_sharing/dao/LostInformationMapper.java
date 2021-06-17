@@ -19,7 +19,7 @@ public interface LostInformationMapper {
 
     List<LostInformation> selectByCategoryId(int categoryId);
 
-    List<LostInformation> fuzzyQuery(Integer categoryId,String key);
+    List<LostInformation> fuzzyQuery(Integer categoryId,String key,Integer flag);
 
     int updateByPrimaryKey(LostInformation record);
 

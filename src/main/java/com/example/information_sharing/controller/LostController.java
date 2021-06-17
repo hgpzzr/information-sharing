@@ -63,7 +63,7 @@ public class LostController {
 
 	@GetMapping("/fuzzyQuery")
 	@ApiOperation("根据分类进行模糊查询")
-	public ResultVO fuzzyQuery(Integer categoryId,String key){
-		return lostService.fuzzyQuery(categoryId,key);
+	public ResultVO fuzzyQuery(Integer categoryId,String key,Integer flag){
+		return lostService.fuzzyQuery(categoryId,key,flag);
 	}
 }
